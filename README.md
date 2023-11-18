@@ -3,6 +3,12 @@
 convert a text string to audfio ( mp3 file ) using elevenLabs API, needs environment variable with API key set ELEVENLABS_API_KEY
 
 
+# Build
+
+build with VS 2022 and sln with vcpkg integrated or with cmake and vcpkg integration
+
+
+
 # Usage: Text to Speech Converter [-h] [--text VAR] [--output VAR] [--model-id VAR] [--stability VAR] [--similarity-boost VAR] [--style VAR] [--use-speaker-boost] [--optimize-streaming-latency] [--output-format VAR] [--list-voices] [--voice-id VAR]
 
 Optional arguments:
