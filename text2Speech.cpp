@@ -188,6 +188,7 @@ int main(int argc, char** argv) {
 	argparse::ArgumentParser program("Text to Speech Converter");
 
 	program.add_argument("--text")
+		.default_value(std::string(""))
 		.help("Text to be converted to speech");
 
 	program.add_argument("-o", "--output")
@@ -279,32 +280,37 @@ int main(int argc, char** argv) {
 		std::string voice_id = program.get<std::string>("--voice-id");
 
 
-		// base API url + voice_id
-		std::string baseUrl = "https://api.elevenlabs.io/v1/text-to-speech/" + voice_id;
+		if( text.length() ) {
 
-		std::string queryParams = "?optimize_streaming_latency=" +
-			std::to_string(optimize_streaming_latency) +
-			"&output_format=" + output_format;
-		std::string speech = textToSpeech(
-			text, apiKey, modelId, stability, similarityBoost, style, useSpeakerBoost, baseUrl, queryParams
-		);
+			// base API url + voice_id
+			std::string baseUrl = "https://api.elevenlabs.io/v1/text-to-speech/" + voice_id;
+
+			std::string queryParams = "?optimize_streaming_latency=" +
+				std::to_string(optimize_streaming_latency) +
+				"&output_format=" + output_format;
+			std::string speech = textToSpeech(
+				text, apiKey, modelId, stability, similarityBoost, style, useSpeakerBoost, baseUrl, queryParams
+			);
 
 
-		// if we got a response, write it to a file
-		// @todo : add support for other formats
-		if( speech.length()) {
-		
-			// save to MP3 file
-			std::ofstream mp3File(outputFile, std::ios::binary);
-			if (mp3File.is_open()) {
-				mp3File.write(speech.c_str(), speech.size());
-				mp3File.close();
-				std::cout << "MP3 file created successfully at " << outputFile << std::endl;
+			// if we got a response, write it to a file
+			// @todo : add support for other formats
+			if( speech.length()) {
+			
+				// save to MP3 file
+				std::ofstream mp3File(outputFile, std::ios::binary);
+				if (mp3File.is_open()) {
+					mp3File.write(speech.c_str(), speech.size());
+					mp3File.close();
+					std::cout << "MP3 file created successfully at " << outputFile << std::endl;
+				}
+				else {
+					std::cerr << "Unable to open file for writing: " << outputFile << std::endl;
+					return 1;
+				}
 			}
-			else {
-				std::cerr << "Unable to open file for writing: " << outputFile << std::endl;
-				return 1;
-			}
+		} else {
+			std::cerr << "No text supplied!" << std::endl;
 		}
 	}
 	catch (const std::exception& err) {
