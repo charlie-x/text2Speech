@@ -1,0 +1,14 @@
+{
+  "name": "text2speech",
+  "version": "0.1",
+  "dependencies": [
+    {
+      "name": "nlohmann-json",
+      "default-features": true
+    },
+    "curl",
+    "cpr",
+    "argparse",
+    "spdlog"
+  ]
+}
