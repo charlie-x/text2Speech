@@ -33,8 +33,17 @@ std::string getApiKey() {
 
 #else
 
-	return getenv("ELEVENLABS_API_KEY");
+	char *envvar =getenv("ELEVENLABS_API_KEY") ;	
+	
+	if ( envvar == NULL) {
+		return "API_KEY_NOT_FOUND";
+	}
 
+	std::string senvar( envvar );
+
+	free(envvar);
+
+	return  senvar;
 #endif
 
 }
