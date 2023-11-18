@@ -41,8 +41,6 @@ std::string getApiKey() {
 
 	std::string senvar( envvar );
 
-	free(envvar);
-
 	return  senvar;
 #endif
 
