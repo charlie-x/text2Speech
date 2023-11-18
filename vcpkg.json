@@ -6,7 +6,6 @@
       "name": "nlohmann-json",
       "default-features": true
     },
-    "curl",
     "cpr",
     "argparse",
     "spdlog"
