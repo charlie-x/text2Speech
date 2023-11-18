@@ -24,7 +24,7 @@ set(CMAKE_C_FLAGS_RELEASE "-mtune=generic -O2 -ftree-loop-vectorize -Wall -pedan
 
 set(CMAKE_CXX_FLAGS "-funsigned-char")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb -fasynchronous-unwind-tables")
-set(CMAKE_CXX_FLAGS_RELEASE "-mtune=generic -O2 -ftree-loop-vectorize -Wall -pedantic -mstackrealign  -flto -fomit-frame-pointer -DNDEBUG -fcf-protection -Wno-unknown-pragmas -fexceptions -fstack-clash-protection -fpie -Wl,-pie -Wl,-z,relro	-Wl,-z,defs	-Wl,-z,now")
+set(CMAKE_CXX_FLAGS_RELEASE "-mtune=generic -O2 -Wall -pedantic -mstackrealign  -flto -fomit-frame-pointer -DNDEBUG -Wno-unknown-pragmas -fexceptions -fstack-clash-protection -fpie -Wl,-pie")
 
 find_package(argparse CONFIG REQUIRED)
 
